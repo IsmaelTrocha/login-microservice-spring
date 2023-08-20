@@ -3,8 +3,8 @@ server:
 spring:
   profile: local
   mail:
-    username: ismaeltesttrocha@gmail.com
-    password: pxfvevitotvouzvi
+    username: ${EMAIL_ADDRESS}
+    password: ${EMAIL_PASSWORD}
     port: 587
     host: smtp.gmail.com
     properties:
@@ -25,4 +25,4 @@ spring:
     show-sql: true
     hibernate:
       format-sql: true
-      ddl-auto: create
+      ddl-auto: update
