@@ -1,8 +1,20 @@
 server:
   port: 8093
-
 spring:
   profile: local
+  mail:
+    username: ismaeltesttrocha@gmail.com
+    password: pxfvevitotvouzvi
+    port: 587
+    host: smtp.gmail.com
+    properties:
+      mail:
+        transport:
+          protocol: smtp
+        smtp:
+          auth: true
+          starttls:
+            enable: true
   datasource:
     url: jdbc:postgresql://localhost:5433/registration
     username: postgres

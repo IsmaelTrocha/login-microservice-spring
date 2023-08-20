@@ -14,4 +14,6 @@ public interface UserService {
     Optional<User> findByEmail(String email);
 
     void saveUserVerificationToken(User theUser, String verificationToken);
+
+    String validateToken(String token);
 }

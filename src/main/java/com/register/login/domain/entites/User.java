@@ -23,5 +23,5 @@ public class User {
     private String password;
     private Boolean enabled = false;
     private LocalDateTime create_at;
-    private String rol;
+    private String role;
 }
