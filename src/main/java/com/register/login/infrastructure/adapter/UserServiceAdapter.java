@@ -2,18 +2,20 @@ package com.register.login.infrastructure.adapter;
 
 import com.register.login.domain.entites.User;
 import com.register.login.domain.registration.RegistrationRequest;
-import com.register.login.infrastructure.repository.token.VerificationToken;
 import com.register.login.domain.service.UserService;
 import com.register.login.infrastructure.mapper.UserMapper;
 import com.register.login.infrastructure.repository.UserRepository;
 import com.register.login.infrastructure.repository.VerificationTokenRepository;
+import com.register.login.infrastructure.repository.token.VerificationToken;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor

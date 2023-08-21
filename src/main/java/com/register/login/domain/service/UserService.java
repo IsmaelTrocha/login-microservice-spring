@@ -2,6 +2,7 @@ package com.register.login.domain.service;
 
 import com.register.login.domain.entites.User;
 import com.register.login.domain.registration.RegistrationRequest;
+import com.register.login.infrastructure.repository.token.VerificationToken;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,4 +17,5 @@ public interface UserService {
     void saveUserVerificationToken(User theUser, String verificationToken);
 
     String validateToken(String token);
+
 }

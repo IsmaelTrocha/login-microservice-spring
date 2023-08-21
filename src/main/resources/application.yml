@@ -16,9 +16,9 @@ spring:
           starttls:
             enable: true
   datasource:
-    url: jdbc:postgresql://localhost:5433/registration
-    username: postgres
-    password: 1234
+    url: jdbc:postgresql://localhost:5433/${DB_NAME}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     test-on-borrow: true
     validation-query: SELECT 1 FROM dual
   jpa:
