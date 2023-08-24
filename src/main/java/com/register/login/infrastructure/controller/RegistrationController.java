@@ -3,11 +3,9 @@ package com.register.login.infrastructure.controller;
 import com.register.login.domain.entites.User;
 import com.register.login.domain.registration.RegistrationRequest;
 import com.register.login.event.RegistrationCompleteEvent;
-import com.register.login.event.listener.RegistrationCompleteEventListener;
 import com.register.login.infrastructure.adapter.UserServiceAdapter;
 import com.register.login.infrastructure.repository.VerificationTokenRepository;
 import com.register.login.infrastructure.repository.token.VerificationToken;
-import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,8 +13,6 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.UnsupportedEncodingException;
 
 @RestController
 @RequestMapping(path = "/register")
@@ -47,6 +43,7 @@ public class RegistrationController {
         }
         return "Invalid verification link";
     }
+
 
     public String applicationUrl(HttpServletRequest request) {
         return "http://" + request.getServerName() + ":"

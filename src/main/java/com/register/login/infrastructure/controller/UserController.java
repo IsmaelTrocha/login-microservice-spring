@@ -3,7 +3,6 @@ package com.register.login.infrastructure.controller;
 import com.register.login.domain.entites.User;
 import com.register.login.infrastructure.adapter.UserServiceAdapter;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
