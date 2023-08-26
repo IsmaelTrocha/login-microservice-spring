@@ -8,13 +8,14 @@ import java.util.Optional;
 
 public interface UserService {
 
-    List<User> getUser();
+  List<User> getUser();
 
-    User registerUser(RegistrationRequest registrationRequest);
-    Optional<User> findByEmail(String email);
+  User registerUser(RegistrationRequest registrationRequest);
 
-    void saveUserVerificationToken(User theUser, String verificationToken);
+  Optional<User> findByEmail(String email);
 
-    String validateToken(String token);
+  void saveUserVerificationToken(User theUser, String verificationToken);
+
+  String validateToken(String token);
 
 }

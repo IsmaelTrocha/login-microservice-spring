@@ -10,8 +10,8 @@ import org.mapstruct.MappingConstants;
 public interface UserMapper {
 
 
-    User toEntity(RegistrationRequest registrationRequest);
+  User toEntity(RegistrationRequest registrationRequest);
 
-    RegistrationRequest toDto(User user);
+  RegistrationRequest toDto(User user);
 
 }

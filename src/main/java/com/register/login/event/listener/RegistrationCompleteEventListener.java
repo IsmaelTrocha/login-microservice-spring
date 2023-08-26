@@ -19,54 +19,55 @@ import java.util.UUID;
 @Component
 @RequiredArgsConstructor
 public class RegistrationCompleteEventListener implements
-        ApplicationListener<RegistrationCompleteEvent> {
+    ApplicationListener<RegistrationCompleteEvent> {
 
-    private final UserService userService;
-    private final JavaMailSender mailSender;
-    private User theUser;
+  private final UserService userService;
+  private final JavaMailSender mailSender;
+  private User theUser;
 
-    @Override
-    public void onApplicationEvent(RegistrationCompleteEvent event) {
-        //1. Get the new registered user
-        theUser = event.getUser();
+  @Override
+  public void onApplicationEvent(RegistrationCompleteEvent event) {
+    //1. Get the new registered user
+    theUser = event.getUser();
 
-        //2. Create a verification token for user
-        String verificationToken = UUID.randomUUID().toString();
+    //2. Create a verification token for user
+    String verificationToken = UUID.randomUUID().toString();
 
-        //3. Save the verification token for the user.
+    //3. Save the verification token for the user.
 
-        userService.saveUserVerificationToken(theUser, verificationToken);
+    userService.saveUserVerificationToken(theUser, verificationToken);
 
-        //4. Build the verification url to be sent to the user
-        String url = event.getApplicationUrl() + "/register/verifyEmail?token=" + verificationToken;
+    //4. Build the verification url to be sent to the user
+    String url = event.getApplicationUrl() + "/register/verifyEmail?token=" + verificationToken;
 
-        //5. Send the email
+    //5. Send the email
 
-        try {
-            sendEmailValidation(url);
-        } catch (MessagingException | UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
-        }
-
-        log.info("Click the link below to complete your registration : {}", url);
+    try {
+      sendEmailValidation(url);
+    } catch (MessagingException | UnsupportedEncodingException e) {
+      throw new RuntimeException(e);
     }
 
-    public void sendEmailValidation(String url) throws MessagingException, UnsupportedEncodingException {
+    log.info("Click the link below to complete your registration : {}", url);
+  }
 
-        String subject = "Email Verification";
-        String senderName = "Liquor Golden Registration Portal Service.";
-        String mailContent = "<p> Hi, " + theUser.getFirstName() + ", </p>" +
-                "<p>Thank you for registering with us," + "" +
-                "Please, follow the link below to complete your registration.</p>" +
-                "<a href=\"" + url + "\">Verify your email to activate your account</a>" +
-                "<p> Thank you <br> Liquor Golden Registration Portal Service";
-        MimeMessage message = mailSender.createMimeMessage();
-        var messageHelper = new MimeMessageHelper(message);
-        messageHelper.setFrom("ismaeltesttrocha@gmail.com", senderName);
-        messageHelper.setTo(theUser.getEmail());
-        messageHelper.setSubject(subject);
-        messageHelper.setText(mailContent, true);
-        mailSender.send(message);
+  public void sendEmailValidation(String url)
+      throws MessagingException, UnsupportedEncodingException {
 
-    }
+    String subject = "Email Verification";
+    String senderName = "Liquor Golden Registration Portal Service.";
+    String mailContent = "<p> Hi, " + theUser.getFirstName() + ", </p>" +
+        "<p>Thank you for registering with us," + "" +
+        "Please, follow the link below to complete your registration.</p>" +
+        "<a href=\"" + url + "\">Verify your email to activate your account</a>" +
+        "<p> Thank you <br> Liquor Golden Registration Portal Service";
+    MimeMessage message = mailSender.createMimeMessage();
+    var messageHelper = new MimeMessageHelper(message);
+    messageHelper.setFrom("ismaeltesttrocha@gmail.com", senderName);
+    messageHelper.setTo(theUser.getEmail());
+    messageHelper.setSubject(subject);
+    messageHelper.setText(mailContent, true);
+    mailSender.send(message);
+
+  }
 }
