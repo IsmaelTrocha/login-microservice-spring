@@ -13,6 +13,7 @@ public class UserRegistrationDetails implements UserDetails {
 
   private String username;
   private String password;
+  private String email;
   private Boolean enabled;
   private String role;
   private List<GrantedAuthority> authorities;

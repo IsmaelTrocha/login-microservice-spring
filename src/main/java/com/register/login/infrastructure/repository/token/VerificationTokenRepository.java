@@ -1,6 +1,5 @@
 package com.register.login.infrastructure.repository.token;
 
-import com.register.login.infrastructure.repository.token.VerificationToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

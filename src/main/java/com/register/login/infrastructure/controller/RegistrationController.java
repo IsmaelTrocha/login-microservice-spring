@@ -4,15 +4,20 @@ import com.register.login.domain.entites.User;
 import com.register.login.domain.registration.RegistrationRequest;
 import com.register.login.event.RegistrationCompleteEvent;
 import com.register.login.infrastructure.adapter.UserServiceAdapter;
-import com.register.login.infrastructure.repository.token.VerificationTokenRepository;
 import com.register.login.infrastructure.repository.token.VerificationToken;
+import com.register.login.infrastructure.repository.token.VerificationTokenRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path = "/register")
@@ -24,7 +29,7 @@ public class RegistrationController {
   private final ApplicationEventPublisher publisher;
   private final VerificationTokenRepository verificationTokenRepository;
 
-  @PostMapping
+  @PostMapping(value = "/newU")
   public ResponseEntity<String> registerUser(@RequestBody RegistrationRequest registrationRequest,
       final HttpServletRequest servlet) {
     User user = userService.registerUser(registrationRequest);
@@ -46,6 +51,7 @@ public class RegistrationController {
     return "Invalid verification link";
   }
 
+  @GetMapping(value = "")
 
   public String applicationUrl(HttpServletRequest request) {
     return "http://" + request.getServerName() + ":"

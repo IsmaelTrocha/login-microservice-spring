@@ -3,18 +3,19 @@ package com.register.login.event.listener;
 import com.register.login.domain.entites.User;
 import com.register.login.domain.service.UserService;
 import com.register.login.event.RegistrationCompleteEvent;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import java.io.UnsupportedEncodingException;
+import java.security.Key;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
-
-import java.io.UnsupportedEncodingException;
-import java.util.UUID;
-
 @Slf4j
 @Component
 @RequiredArgsConstructor
@@ -24,6 +25,7 @@ public class RegistrationCompleteEventListener implements
   private final UserService userService;
   private final JavaMailSender mailSender;
   private User theUser;
+
 
   @Override
   public void onApplicationEvent(RegistrationCompleteEvent event) {
@@ -63,7 +65,7 @@ public class RegistrationCompleteEventListener implements
         "<p> Thank you <br> Liquor Golden Registration Portal Service";
     MimeMessage message = mailSender.createMimeMessage();
     var messageHelper = new MimeMessageHelper(message);
-    messageHelper.setFrom("ismaeltesttrocha@gmail.com", senderName);
+    messageHelper.setFrom("ismaeltrocha@gmail.com", senderName);
     messageHelper.setTo(theUser.getEmail());
     messageHelper.setSubject(subject);
     messageHelper.setText(mailContent, true);

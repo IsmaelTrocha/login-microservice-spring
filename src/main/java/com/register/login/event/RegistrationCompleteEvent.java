@@ -1,11 +1,10 @@
 package com.register.login.event;
 
 import com.register.login.domain.entites.User;
+import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.context.ApplicationEvent;
-
-import java.time.LocalDateTime;
 
 @Getter
 @Setter

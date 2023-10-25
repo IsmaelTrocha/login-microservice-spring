@@ -5,15 +5,14 @@ import com.register.login.domain.registration.RegistrationRequest;
 import com.register.login.domain.service.UserService;
 import com.register.login.infrastructure.mapper.UserMapper;
 import com.register.login.infrastructure.repository.UserRepository;
-import com.register.login.infrastructure.repository.token.VerificationTokenRepository;
 import com.register.login.infrastructure.repository.token.VerificationToken;
-import lombok.AllArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-
+import com.register.login.infrastructure.repository.token.VerificationTokenRepository;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
@@ -41,6 +40,7 @@ public class UserServiceAdapter implements UserService {
           "User with email " + registrationRequest.getEmail() + " already exists");
     }
     registrationRequest.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
+
     return userRepository.save(userMapper.toEntity(registrationRequest));
   }
 
@@ -53,8 +53,8 @@ public class UserServiceAdapter implements UserService {
   public void saveUserVerificationToken(User theUser, String verificationToken) {
     VerificationToken verification = new VerificationToken(verificationToken, theUser);
     verificationTokenRepository.save(verification);
-
   }
+
 
   @Override
   public String validateToken(String token) {

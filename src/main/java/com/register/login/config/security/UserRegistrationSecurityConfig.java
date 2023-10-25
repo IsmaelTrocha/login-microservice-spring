@@ -26,7 +26,7 @@ public class UserRegistrationSecurityConfig {
         .authorizeHttpRequests(
             authRequest ->
                 authRequest.requestMatchers("/register/**").permitAll()
-                    .requestMatchers("/users/**").hasAuthority("ADMIN")).formLogin(withDefaults())
+                    .requestMatchers("/users/**").permitAll()).formLogin(withDefaults())
         .build();
 
 
