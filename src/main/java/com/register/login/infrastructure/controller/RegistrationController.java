@@ -51,7 +51,6 @@ public class RegistrationController {
     return "Invalid verification link";
   }
 
-  @GetMapping(value = "")
   public String applicationUrl(HttpServletRequest request) {
     return "http://" + request.getServerName() + ":"
         + request.getServerPort() + request.getContextPath();

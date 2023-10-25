@@ -3,12 +3,9 @@ package com.register.login.event.listener;
 import com.register.login.domain.entites.User;
 import com.register.login.domain.service.UserService;
 import com.register.login.event.RegistrationCompleteEvent;
-import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.security.Keys;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
-import java.security.Key;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,20 +26,14 @@ public class RegistrationCompleteEventListener implements
 
   @Override
   public void onApplicationEvent(RegistrationCompleteEvent event) {
-    //1. Get the new registered user
+
     theUser = event.getUser();
 
-    //2. Create a verification token for user
     String verificationToken = UUID.randomUUID().toString();
-
-    //3. Save the verification token for the user.
 
     userService.saveUserVerificationToken(theUser, verificationToken);
 
-    //4. Build the verification url to be sent to the user
     String url = event.getApplicationUrl() + "/register/verifyEmail?token=" + verificationToken;
-
-    //5. Send the email
 
     try {
       sendEmailValidation(url);
