@@ -25,8 +25,10 @@ public class UserRegistrationSecurityConfig {
     return httpSecurity.csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests(
             authRequest ->
-                authRequest.requestMatchers("/register/**").permitAll()
-                    .requestMatchers("/users/**").permitAll()).formLogin(withDefaults())
+                authRequest
+                    .requestMatchers("/register/**").permitAll()
+                    .requestMatchers("/users/**").permitAll())
+        .formLogin(withDefaults())
         .build();
 
 

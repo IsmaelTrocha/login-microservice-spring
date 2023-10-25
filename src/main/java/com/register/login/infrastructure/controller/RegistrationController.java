@@ -52,7 +52,6 @@ public class RegistrationController {
   }
 
   @GetMapping(value = "")
-
   public String applicationUrl(HttpServletRequest request) {
     return "http://" + request.getServerName() + ":"
         + request.getServerPort() + request.getContextPath();
