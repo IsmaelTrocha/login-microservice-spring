@@ -27,17 +27,20 @@ public class UserRegistrationSecurityConfig {
             authRequest ->
                 authRequest
                     .requestMatchers("/register/**").permitAll()
-                    .requestMatchers("/users/**").permitAll())
+                    .requestMatchers("/users/**").permitAll()
+        )
         .formLogin(withDefaults())
         .build();
 
 
-      /*  .requestMatchers("/register/**").permitAll()
+      /*
+        .requestMatchers("/register/**").permitAll()
         .requestMatchers("/users/**","/address/create").hasAnyAuthority("ADMIN")
         .and()
         .formLogin()
         .and()
-        .build();*/
+        .build();
+        */
   }
 
 }

@@ -13,6 +13,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
+
 @Slf4j
 @Component
 @RequiredArgsConstructor

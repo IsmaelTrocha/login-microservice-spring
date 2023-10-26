@@ -28,6 +28,10 @@ public class UserServiceAdapter implements UserService {
     return userRepository.findAll();
   }
 
+  public User findById(Long id){
+    return userRepository.findById(id).orElse(null);
+  }
+
   @Override
   public User registerUser(RegistrationRequest registrationRequest) {
     Optional<User> optionalUser = this.userRepository.findByEmail(registrationRequest.getEmail());

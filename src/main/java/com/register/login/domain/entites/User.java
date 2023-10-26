@@ -27,6 +27,7 @@ public class User {
   private String password;
   private String passwordDesencoded;
   private Boolean enabled = false;
+  private String thumbnail;
   private Boolean match;
   private LocalDateTime create_at;
   private String role;
